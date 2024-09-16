@@ -1,0 +1,203 @@
+﻿@model IEnumerable<clinimanagmanetsystem.Models.Doctor>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+        }
+
+        .navbar-custom {
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid #e0e0e0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .navbar-custom .navbar-brand {
+                font-size: 2rem;
+                font-weight: bold;
+                color: #007bff;
+            }
+
+            .navbar-custom .nav-link {
+                color: #007bff;
+                font-size: 0.875rem; /* Reduced font size */
+                margin: 0 10px; /* Reduced margin */
+                padding: 8px 16px; /* Reduced padding */
+                border-radius: 25px;
+                text-align: center;
+                text-decoration: none;
+                transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            }
+
+                .navbar-custom .nav-link:hover {
+                    background-color: #e7f0ff;
+                    color: #0056b3;
+                    transform: scale(1.05);
+                }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px; /* Reduced margin */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 300px; /* Reduced max width */
+            margin: 0 auto; /* Center the card */
+        }
+
+            .card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            }
+
+        .card-header {
+            background: #007bff;
+            color: #ffffff;
+            font-size: 1.125rem; /* Further reduced font size */
+            border-bottom: 2px solid #0056b3;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 8px; /* Reduced padding */
+        }
+
+        .card-body {
+            padding: 10px; /* Further reduced padding */
+        }
+
+            .card-body .btn {
+                margin: 4px; /* Reduced margin */
+                border-radius: 25px;
+                font-size: 0.75rem; /* Font size */
+                padding: 6px 12px; /* Padding */
+            }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border: none;
+            color: #ffffff;
+        }
+
+            .btn-info:hover {
+                background-color: #138496;
+            }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+            color: #ffffff;
+        }
+
+            .btn-warning:hover {
+                background-color: #e0a800;
+            }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+            color: #ffffff;
+        }
+
+            .btn-danger:hover {
+                background-color: #c82333;
+            }
+
+        .btn-add {
+            background-color: #28a745;
+            color: #ffffff;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.875rem; /* Reduced font size */
+            padding: 8px 16px; /* Reduced padding */
+        }
+
+            .btn-add:hover {
+                background-color: #218838;
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+        <a class="navbar-brand" href="#">Z.</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Doctor/Index"><i class="fas fa-user-plus"></i> Manage Doctor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Patient/Index"><i class="fas fa-user-injured"></i> Manage Patients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Apointment/Index"><i class="fas fa-calendar-check"></i> Manage Appointments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/MedicalRecord/Index"><i class="fas fa-file-medical"></i> Manage Medical Records</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Doctors</h2>
+
+        <a href="/Doctor/Create" class="btn btn-add"><i class="fas fa-user-plus"></i> Add New Doctor</a>
+
+        <div class="row">
+            @foreach (var doctor in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            Doctor: @doctor.FullName
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <strong>Specialization:</strong> @doctor.Specialization
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Contact Number:</strong> @doctor.ContactNumber
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Email:</strong> @doctor.Email
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Appointments:</strong> @doctor.Appointments
+                                </li>
+                            </ul>
+                            <div class="text-center mt-2">
+                                <!-- Reduced margin-top -->
+                                <a href="/Doctor/Details/@doctor.DoctorId" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i> Details</a>
+                                <a href="/Doctor/Edit/@doctor.DoctorId" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+
+                                <form asp-action="Delete" method="post" style="display:inline">
+                                    <input type="hidden" name="id" value="@doctor.DoctorId" />
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

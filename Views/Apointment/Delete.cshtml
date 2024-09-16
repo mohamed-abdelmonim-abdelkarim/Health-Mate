@@ -1,0 +1,30 @@
+﻿@model IEnumerable<clinimanagmanetsystem.Models.Appointment>
+
+<h2>Appointments</h2>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Patient Name</th>
+            <th>Doctor Name</th>
+            <th>Appointment Date</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <td>@appointment.Patient.FirstName @appointment.Patient.LastName</td>
+                <td>@appointment.Doctor.FullName</td>
+                <td>@appointment.AppointmentDate.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>
+                    <a href="/Appointment/Delete/@appointment.AppointmentId" class="btn btn-danger"
+                       onclick="return confirm('Are you sure you want to delete this appointment?');">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,113 @@
+﻿@model Doctor
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background: #f4f7f6; /* خلفية خفيفة */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin: 30px auto;
+            max-width: 600px;
+            background: #ffffff;
+        }
+
+        .card-header {
+            background: #007bff;
+            color: #ffffff;
+            border-bottom: 2px solid #0056b3;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .dl-horizontal dt {
+            font-weight: bold;
+        }
+
+        .btn {
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+            color: #ffffff;
+        }
+
+            .btn-warning:hover {
+                background-color: #e0a800;
+            }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+            color: #ffffff;
+        }
+
+            .btn-danger:hover {
+                background-color: #c82333;
+            }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            color: #ffffff;
+        }
+
+            .btn-secondary:hover {
+                background-color: #5a6268;
+            }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h3>@Model.FullName</h3>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Specialization:</dt>
+                <dd class="col-sm-9">@Model.Specialization</dd>
+
+                <dt class="col-sm-3">Contact Number:</dt>
+                <dd class="col-sm-9">@Model.ContactNumber</dd>
+
+                <dt class="col-sm-3">Email:</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+
+                <dt class="col-sm-3">Appointments:</dt>
+                <dd class="col-sm-9">@Model.Appointments</dd>
+            </dl>
+        </div>
+        <div class="card-footer text-center">
+            <a href="@Url.Action("Edit", new { id = Model.DoctorId })" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+            <a href="@Url.Action("Delete", new { id = Model.DoctorId })" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+            <a href="@Url.Action("Index")" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to List</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

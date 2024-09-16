@@ -1,0 +1,185 @@
+﻿@model IEnumerable<clinimanagmanetsystem.Models.MedicalRecord>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Records</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+        }
+
+        .navbar-custom {
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid #e0e0e0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 87px; /* Adjust this value to move the navbar down */
+            width: 100%;
+            z-index: 1030;
+        }
+
+            .navbar-custom .navbar-brand {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #007bff;
+            }
+
+            .navbar-custom .nav-link {
+                color: #007bff;
+                font-size: 1rem;
+                margin: 0 15px;
+                padding: 10px 20px;
+                border-radius: 25px;
+                text-align: center;
+                text-decoration: none;
+                transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            }
+
+                .navbar-custom .nav-link:hover {
+                    background-color: #e7f0ff;
+                    color: #0056b3;
+                    transform: scale(1.05);
+                }
+
+        .container {
+            margin-top: 150px; /* Adjust to align content below the navbar */
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            }
+
+        .card-header {
+            background: #007bff;
+            color: #ffffff;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #0056b3;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 15px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .btn-custom {
+            margin-right: 5px;
+            border-radius: 20px; /* Rounded corners */
+            padding: 8px 16px;
+            font-size: 0.875rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+            color: #ffffff;
+        }
+
+            .btn-success:hover {
+                background-color: #218838;
+            }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+            color: #212529;
+        }
+
+            .btn-warning:hover {
+                background-color: #e0a800;
+            }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+            color: #ffffff;
+        }
+
+            .btn-danger:hover {
+                background-color: #c82333;
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+        <a class="navbar-brand" href="#">Z.</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Doctor/Index"><i class="fas fa-user-plus"></i> Manage Doctor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Patient/Index"><i class="fas fa-user-injured"></i> Manage Patients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Apointment/Index"><i class="fas fa-calendar-check"></i> Manage Appointments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/MedicalRecord/Index"><i class="fas fa-file-medical"></i> Manage Medical Records</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Medical Records</h2>
+
+        <a href="/MedicalRecord/Create" class="btn btn-success btn-custom mb-3"><i class="fas fa-plus"></i> Add New Record</a>
+
+        <div class="row">
+            @foreach (var record in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            Medical Record: @record.Diagnosis
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <strong>Diagnosis:</strong> @record.Diagnosis
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Treatment:</strong> @record.Treatment
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Date:</strong> @record.Date.ToString("yyyy-MM-dd")
+                                </li>
+                            </ul>
+                            <div class="text-center mt-3">
+                                <a href="/MedicalRecord/Edit/@record.MedicalRecordId" class="btn btn-warning btn-custom"><i class="fas fa-edit"></i> Edit</a>
+                                <a href="/MedicalRecord/Delete/@record.MedicalRecordId" class="btn btn-danger btn-custom"
+                                   onclick="return confirm('Are you sure you want to delete this record?');"><i class="fas fa-trash-alt"></i> Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

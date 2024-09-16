@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Health_Mate", "Health_Mate.csproj", "{FCBAB8BC-D282-4128-838F-DC7182BCD89F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCBAB8BC-D282-4128-838F-DC7182BCD89F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCBAB8BC-D282-4128-838F-DC7182BCD89F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCBAB8BC-D282-4128-838F-DC7182BCD89F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCBAB8BC-D282-4128-838F-DC7182BCD89F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF73DE65-5E2E-40C5-84E1-809FFA5F260F}
+	EndGlobalSection
+EndGlobal
